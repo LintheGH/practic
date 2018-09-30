@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>七巧板</h1>
+  <canvas width="800" height="800" style="border: 1px solid #eee; margin: 100px auto;"></canvas>
+</body>
+</html>
+<script>
+  let canvas = document.querySelector('canvas')
+  let context = canvas.getContext('2d')
+  let pieces = [
+    {position:[{x: 0, y: 0}, {x: 400, y: 400},{x: 0, y: 800}],color:'#caff67'},
+    {position:[{x: 0, y: 800}, {x: 400, y: 400},{x: 800, y: 800}],color:'#67becf'},
+    {position:[{x: 0, y: 0}, {x: 200, y: 200},{x: 600, y: 200},{x: 400, y: 0}],color:'#ef3d61'},
+    {position:[{x: 200, y: 200}, {x: 400, y: 400},{x: 600, y: 200}],color:'#f9f51a'},
+    {position:[{x: 400, y: 400}, {x: 600, y: 600},{x: 800, y: 400},{x: 600, y: 200}],color:'#a594c0'},
+    {position:[{x: 600, y: 600}, {x: 800, y: 800},{x: 800, y: 400}],color:'#fa8ecc'},
+    {position:[{x: 400, y: 0}, {x: 800, y: 400},{x: 800, y: 0}],color:'#f6ca69'},
+  ]
+
+  let draw = function (piece, cxt) {
+    cxt.beginPath()
+    cxt.moveTo(piece.position[0].x, piece.position[0].y)
+    for(let i=1;i<piece.position.length;i++){
+      cxt.lineTo(piece.position[i].x, piece.position[i].y)
+    }
+    cxt.closePath()
+    cxt.fill()
+    cxt.stroke()
+    cxt.fillStyle = piece.color
+  }
+  
+  for (let i = 0;i < pieces.length; i++) {
+    draw(pieces[i], context)
+  }
+</script>
